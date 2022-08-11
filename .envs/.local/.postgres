@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=myproj
+POSTGRES_USER=ZtNAZCjmUiENLejtnyESbXHfotvMsyYj
+POSTGRES_PASSWORD=3HmDxPxWmjeEUOkR4yS1hoG7qgYQ8YWFKSUbASL3BnSRcecYxv8nxMe60KOyPLNb

@@ -27,13 +27,23 @@ certificatesResolvers:
 
 http:
   routers:
-    web-secure-router:
-      rule: "Host(`example.com`) || Host(`www.example.com`)"
+    django:
+      rule: "Host(`api.questionly.app`)"
       entryPoints:
         - web-secure
       middlewares:
         - csrf
       service: django
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
+    frontend:
+      rule: "Host(`questionly.app`) || Host(`www.questionly.app`)"
+      entryPoints:
+        - web-secure
+      middlewares:
+        - csrf
+      service: frontend
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
@@ -50,6 +60,10 @@ http:
       loadBalancer:
         servers:
           - url: http://django:5000
+    frontend:
+      loadBalancer:
+        servers:
+          - url: http://frontend:80
 
 providers:
   # https://docs.traefik.io/master/providers/file/
